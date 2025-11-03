@@ -80,7 +80,11 @@ playSong(currentSong);
 });
 </script>
 
-
+<div id="countdown-container">
+    <div id="countdown"></div>
+    <h2 style="color: #88375f;">29/11/2024💕</h2>
+    
+</div>
 
 <!-- سلايدر الصور -->
 <div class="album-container">
@@ -94,12 +98,7 @@ playSong(currentSong);
 </div>
 
 
-<div id="countdown-container">
-    <div id="countdown"></div>
-    <h2 style="color: #88375f;">29/11/2024💕</h2>
-    <dic id="name">محمود❤️حنين</dic>
-    
-</div>
+
 
 <script src="script.js"></script>
 
@@ -110,21 +109,24 @@ display: flex;
 align-items: center;
 justify-content: center;
 position: relative;
-margin-top: 30px;
+margin-top: 0px;
 }
 
 .image-frame {
 position: relative;
 border-radius: 18px;
 overflow: hidden;
-width: 320px;
-height: 500px; /* زوّدنا الطول */
+width: 70vw;
+height: calc(40vw * 2.15); /* يحافظ على النسبة بين الطول والعرض */
+max-width: 360px; /* عشان متكبرش أوي */
+max-height: 775px;
 background: linear-gradient(145deg, #ffe6f2, #ffb3d9);
-box-shadow: 
-0 4px 20px rgba(255, 102, 153, 0.4), 
+box-shadow:
+0 4px 20px rgba(255, 102, 153, 0.4),
 inset 0 0 20px rgba(255, 255, 255, 0.6);
 transition: all 0.4s ease;
 }
+
 
 
 .image-frame:hover {
@@ -271,5 +273,3 @@ animation: floatFlower 20s linear infinite;
 .heart:nth-child(6) { left: 50%; animation-duration: 15s; }
 .heart:nth-child(7) { left: 80%; animation-duration: 12s; }
 </style>
-
-
