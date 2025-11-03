@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Welcome 💌</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="hearts-bg">
+
+<div class="password-container" id="entry">
+<h1 class="brand">Enter the password 💌</h1>
+<div class="input-row">
+    <input type="password" id="pass" placeholder="Password">
+    <button id="enterBtn">Enter</button>
+</div>
+</div>
+
+<!-- رسالة الترحيب اللي بتظهر بعد الباسورد -->
+<div class="welcome-overlay" id="welcomeOverlay" aria-hidden="true">
+<div class="welcome-box">
+    <p id="welcomeText"></p>
+</div>
+</div>
+
+<script>
+const enterBtn = document.getElementById('enterBtn');
+const passInput = document.getElementById('pass');
+const welcomeOverlay = document.getElementById('welcomeOverlay');
+const welcomeText = document.getElementById('welcomeText');
+
+
+// لو هتعمل تغيير كلمة السر غير هنا
+const PASSWORD = "love";
+
+function showWelcomeAndGo() {
+    // عرض الرسالة كتابة حرف حرف
+    welcomeOverlay.style.display = 'flex';
+    let msg = "Welcome my love 💕";
+    welcomeText.textContent = "";
+    let k = 0;
+    const typer = setInterval(() => {
+    welcomeText.textContent += msg[k++];
+    if (k >= msg.length) {
+        clearInterval(typer);
+        // بعد كتابة الجملة ننتظر شوية وبعدين نعمل fade ثم redirect
+        setTimeout(() => {
+        document.body.classList.add('fade-out');
+        setTimeout(() => {
+            window.location.href = "main.html";
+        }, 700); // مدة الفايد
+        }, 900);
+    }
+    }, 55);
+}
+
+function checkPassword() {
+    const v = passInput.value.trim().toLowerCase();
+    if (v === PASSWORD) {
+    // إخفاء الإدخال تدريجياً ونظهر الترحيب
+    document.getElementById('entry').classList.add('mini-hide');
+    setTimeout(showWelcomeAndGo, 300);
+    } else {
+    // رسالة خطأ لطيفة
+    passInput.value = "";
+    passInput.focus();
+    alert("Wrong password 💔");
+    }
+}
+
+enterBtn.addEventListener('click', checkPassword);
+passInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') checkPassword();
+});
+
+// إنشاء قلوب/ورد متحرك في الخلفية
+for (let i=0;i<22;i++){
+    const el = document.createElement('div');
+    el.className = (Math.random()>0.6)?'petal':'heart';
+    el.style.left = (Math.random()*100) + 'vw';
+    el.style.animationDuration = (6 + Math.random()*6) + 's';
+    el.style.opacity = (0.4 + Math.random()*0.6);
+    document.body.appendChild(el);
+}
+</script>
+
+
+</body>
+</html>
